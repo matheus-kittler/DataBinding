@@ -19,9 +19,9 @@ class MainActivityViewModel(
     val cep: MutableLiveData<String> = MutableLiveData<String>()
     val error: MutableLiveData<String> = MutableLiveData<String>()
     val loading: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
-    val isEnable: LiveData<Boolean> = Transformations.map(cep) {
-        return@map it?.length == 8
-    }
+//    val isEnable: LiveData<Boolean> = Transformations.map(cep) {
+//        return@map it?.length == 8
+//    }
 
     fun loadAddress() {
         val cep: String = cep.value ?: return

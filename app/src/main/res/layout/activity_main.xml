@@ -43,6 +43,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+
+<!--  Não deixa o botão ficar habilitado se não tiver 8 digitos do cep corretos = android:enabled="@{viewModel.isEnable()}"-->
         <Button
             android:id="@+id/searchCepButton"
             android:layout_width="match_parent"
@@ -51,7 +53,7 @@
             android:text="Buscar"
             android:textAllCaps="false"
             android:onClick="@{(view) -> viewModel.loadAddress()}"
-            android:enabled="@{viewModel.isEnable()}"
+
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@+id/searchCepEdt" />
 
