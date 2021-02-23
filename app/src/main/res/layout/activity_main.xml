@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.example.databindingtest.MainActivityViewModel" />
+
+        <variable
+            name="address"
+            type="com.example.databindingtest.Address" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <EditText
+            android:id="@+id/searchCepEdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Busca CEP!"
+            android:textAlignment="center"
+            android:text="@={viewModel.cep}"
+            android:textSize="21sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/searchCepButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:text="Buscar"
+            android:onClick="@{(view) -> viewModel.loadAddress()}"
+            android:enabled="@{viewModel.isEnable()}"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/searchCepEdt" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchCepButton">
+
+            <TextView
+                android:id="@+id/rua"
+                android:text="@{viewModel.address.logradouro}"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="R. Marcílio Dias" />
+
+            <TextView
+                android:id="@+id/complemento"
+                android:text="@{viewModel.address.complemento}"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="Atrás do beco" />
+
+            <TextView
+                android:id="@+id/bairro"
+                android:text="@{viewModel.address.bairro}"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="COHAB C" />
+
+            <TextView
+                android:id="@+id/cidade"
+                android:text="@{viewModel.address.localidade}"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="Gravataí" />
+
+            <TextView
+                android:id="@+id/estado"
+                android:text="@{viewModel.address.uf}"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="RS" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
