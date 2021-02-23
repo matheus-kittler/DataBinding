@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             android:background="@color/transparent"
             android:text="Buscar"
+            android:textAllCaps="false"
             android:onClick="@{(view) -> viewModel.loadAddress()}"
             android:enabled="@{viewModel.isEnable()}"
             android:textColor="@color/black"
