@@ -1,10 +1,11 @@
-package com.example.databindingtest
+package com.example.databindingtest.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import com.example.databindingtest.R
 import com.example.databindingtest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +20,10 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         binding.viewModel = mainViewModel
+
+        binding.searchCepButton.setOnClickListener {
+            mainViewModel.getAddres().observe(this, Observer { binding.address = it })
+        }
 
 //        val addressObserver = Observer<Address> {
 //            binding.address = it

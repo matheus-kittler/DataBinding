@@ -1,4 +1,4 @@
-package com.example.databindingtest
+package com.example.databindingtest.network
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -53,4 +53,8 @@ class Network<T> {
             .connectTimeout(60, TimeUnit.SECONDS)
             .build()
     }
+
+    annotation class Route (
+        val url: String
+    )
 }

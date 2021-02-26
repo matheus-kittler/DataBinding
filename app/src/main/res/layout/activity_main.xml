@@ -4,33 +4,32 @@
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="viewModel"
-            type="com.example.databindingtest.MainActivityViewModel" />
+            type="com.example.databindingtest.view.MainActivityViewModel" />
 
         <variable
             name="address"
-            type="com.example.databindingtest.Address" />
+            type="com.example.databindingtest.model.Address" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".view.MainActivity">
 
         <EditText
             android:id="@+id/searchCepEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Busca CEP!"
-            android:textAlignment="center"
             android:text="@={viewModel.cep}"
+            android:textAlignment="center"
             android:textSize="21sp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -40,9 +39,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+
+        <!--  Não deixa o botão ficar habilitado se não tiver 8 digitos do cep corretos = android:enabled="@{viewModel.isEnable()}"-->
         <Button
             android:id="@+id/searchCepButton"
             android:layout_width="match_parent"
@@ -50,8 +51,7 @@
             android:background="@color/transparent"
             android:text="Buscar"
             android:textAllCaps="false"
-            android:onClick="@{(view) -> viewModel.loadAddress()}"
-            android:enabled="@{viewModel.isEnable()}"
+
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@+id/searchCepEdt" />
 
@@ -67,47 +67,47 @@
 
             <TextView
                 android:id="@+id/rua"
-                android:text="@{viewModel.address.logradouro}"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@{address.logradouro}"
+                android:textColor="@color/black"
                 tools:text="R. Marcílio Dias" />
 
             <TextView
                 android:id="@+id/complemento"
-                android:text="@{viewModel.address.complemento}"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@{address.complemento}"
+                android:textColor="@color/black"
                 tools:text="Atrás do beco" />
 
             <TextView
                 android:id="@+id/bairro"
-                android:text="@{viewModel.address.bairro}"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@{address.bairro}"
+                android:textColor="@color/black"
                 tools:text="COHAB C" />
 
             <TextView
                 android:id="@+id/cidade"
-                android:text="@{viewModel.address.localidade}"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@{address.localidade}"
+                android:textColor="@color/black"
                 tools:text="Gravataí" />
 
             <TextView
                 android:id="@+id/estado"
-                android:text="@{viewModel.address.uf}"
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:text="@{address.uf}"
+                android:textColor="@color/black"
                 tools:text="RS" />
         </LinearLayout>
 

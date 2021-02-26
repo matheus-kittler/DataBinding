@@ -1,4 +1,4 @@
-package com.example.databindingtest
+package com.example.databindingtest.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
