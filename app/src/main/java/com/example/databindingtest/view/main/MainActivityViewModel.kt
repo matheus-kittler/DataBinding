@@ -1,14 +1,10 @@
-package com.example.databindingtest.view
+package com.example.databindingtest.view.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.databindingtest.service.IAddressAPI
-import com.example.databindingtest.network.Network
 import com.example.databindingtest.model.Address
 import com.example.databindingtest.service.AddressService
-import kotlinx.coroutines.*
-import retrofit2.await
 
 
 class MainActivityViewModel(
