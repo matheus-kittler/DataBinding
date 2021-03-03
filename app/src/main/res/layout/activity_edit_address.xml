@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout>
 
     <data>
 
@@ -10,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.databindingtest.view.main.MainActivityViewModel" />
+            type="com.example.databindingtest.view.edit.EditAddressViewModel" />
 
         <variable
             name="address"
@@ -19,57 +17,12 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.main.MainActivity">
-
-        <EditText
-            android:id="@+id/searchCepEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Busca CEP!"
-            android:text="@={viewModel.cep}"
-            android:textAlignment="center"
-            android:textSize="21sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ProgressBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <!--  Não deixa o botão ficar habilitado se não tiver 8 digitos do cep corretos = android:enabled="@{viewModel.isEnable()}"-->
-        <Button
-            android:id="@+id/searchCepButton"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:text="Buscar"
-            android:textAllCaps="false"
-
-            android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/searchCepEdt"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="15dp"/>
-
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:text="Cadastrar"
-            android:textAllCaps="false"
-            android:textSize="11sp"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/searchCepEdt"
-            android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="15dp"/>
+        tools:context=".view.edit.EditAddressActivity">
 
         <LinearLayout
             android:id="@+id/llAddress"
@@ -80,7 +33,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchCepButton"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="25dp">
 
             <EditText
@@ -88,8 +41,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/border_black"
                 android:text="@{address.logradouro}"
+                android:background="@drawable/border_black"
                 android:padding="5dp"
                 android:textSize="18sp"
                 android:textColor="@color/black"
