@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.viewModel = mainViewModel
 
-//        binding.searchCepButton.setOnClickListener {
-//            mainViewModel.getAddres().observe(this, Observer { binding.address = it })
-//        }
+        binding.searchCepButton.setOnClickListener {
+            mainViewModel.getAddres().observe(this, Observer { binding.address = it })
+        }
 
         binding.btnNext.setOnClickListener {
             val intent = Intent(this, EditAddressActivity::class.java)

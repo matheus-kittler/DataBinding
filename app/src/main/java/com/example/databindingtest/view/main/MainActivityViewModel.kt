@@ -3,24 +3,15 @@ package com.example.databindingtest.view.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.databindingtest.dispatcher.AppDispatchers
 import com.example.databindingtest.model.Address
 import com.example.databindingtest.service.backend.AddressService
-import com.example.databindingtest.service.backend.IAddressService
-import com.example.databindingtest.util.Resource
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 
 class MainActivityViewModel(
-    private val dispatcher: AppDispatchers,
-    private val service: IAddressService
+    private val service: AddressService = AddressService()
 ) : ViewModel() {
 
     val cep: MutableLiveData<String> = MutableLiveData<String>()
-    val addressResource: MutableLiveData<Resource<Address>> = MutableLiveData<Resource<Address>>()
     val error: MutableLiveData<String> = MutableLiveData<String>()
     val loading: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
 //    val isEnable: LiveData<Boolean> = Transformations.map(cep) {
@@ -47,13 +38,7 @@ class MainActivityViewModel(
 //        })
 //    }
 
-    fun getAddres() {
-        cep.value?.let { cep ->
-            viewModelScope.launch(dispatcher.io) {
-                service.getAddress(cep).collect {
-                    addressResource.postValue(it)
-                }
-            }
-        }
+     fun getAddres(): LiveData<Address> {
+        return service.getAddress(cep.value ?: "")
     }
 }
