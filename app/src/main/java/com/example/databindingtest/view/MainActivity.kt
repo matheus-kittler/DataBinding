@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.databindingtest.R
 import com.example.databindingtest.databinding.ActivityMainBinding
+import com.example.databindingtest.model.Address
 
 class MainActivity : AppCompatActivity() {
 
