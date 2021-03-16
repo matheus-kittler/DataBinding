@@ -39,6 +39,7 @@ class MainActivityViewModel(
             override fun onFailure(call: Call<Address>, t: Throwable) {
                 error.value = t.message
                 loading.value = false
+                
             }
         })
     }
