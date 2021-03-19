@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
 }
 
@@ -52,7 +53,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //Retrofit
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
@@ -64,4 +65,16 @@ dependencies {
 
     //Network
     implementation "com.github.LTMezzari:kotlin-network:0.8.3"
+
+    //Koin Kotlin
+    implementation "org.koin:koin-core:2.2.2"
+    implementation "org.koin:koin-core-ext:2.2.2"
+
+    //Koin Android
+    implementation "org.koin:koin-androidx-scope:2.2.2"
+    implementation "org.koin:koin-androidx-viewmodel:2.2.2"
+    implementation "org.koin:koin-androidx-fragment:2.2.2"
+
+    //Koin Test
+    testImplementation "org.koin:koin-test:2.2.2"
 }

@@ -51,7 +51,7 @@
             android:background="@color/transparent"
             android:text="Buscar"
             android:textAllCaps="false"
-
+            android:onClick="@{(view) -> viewModel.getAddres()}"
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@+id/searchCepEdt"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/border_black"
-                android:text="@{address.logradouro}"
+                android:text="@{viewModel.addressResource.component2().logradouro}"
                 android:padding="5dp"
                 android:textSize="18sp"
                 android:textColor="@color/black"
