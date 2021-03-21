@@ -6,6 +6,7 @@ import com.example.databindingtest.dispatcher.IAppDispatchers
 import com.example.databindingtest.network.module.RetrofitModule
 import com.example.databindingtest.service.IAddressAPI
 import com.example.databindingtest.service.backend.AddressService
+import com.example.databindingtest.service.backend.IAddressService
 import com.example.databindingtest.view.main.MainActivityViewModel
 import mezzari.torres.lucas.network.source.Network
 import mezzari.torres.lucas.network.source.module.client.LogModule
@@ -27,9 +28,10 @@ val networkModule = module {
         return@single Network
     }
 
-    single { get<Network>().build<IAddressAPI>(IAddressAPI::class) }
+    single { get<Network>().build<IAddressAPI>("https://viacep.com.br/ws/") }
 
-    single<AddressService> { AddressService(get()) }
+
+    single<IAddressService> { AddressService(get()) }
 }
 
 val viewModelModule = module {

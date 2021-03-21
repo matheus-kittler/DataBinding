@@ -4,7 +4,8 @@ import android.content.Intent
 import android.location.Address
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.widget.Toast
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.databindingtest.R
@@ -14,7 +15,7 @@ import com.example.databindingtest.view.edit.EditAddressViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainViewModel: MainActivityViewModel by viewModels()
+    private val mainViewModel: MainActivityViewModel by viewModel()
     var address: com.example.databindingtest.model.Address = com.example.databindingtest.model.Address("", "", "", "", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +48,6 @@ class MainActivity : AppCompatActivity() {
 //
 //        mainViewModel.address.observe(this, addressObserver)
 
-        mainViewModel.error.observe(this, Observer { binding.searchCepEdt.error = it })
+        mainViewModel.isError.observe(this, Observer { binding.searchCepEdt.error = it })
     }
 }

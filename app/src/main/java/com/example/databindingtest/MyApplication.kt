@@ -15,11 +15,6 @@ class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Network.initialize(
-            retrofitLevelModules = arrayListOf(GsonConverterModule(), RetrofitModule()),
-            okHttpClientLevelModule = arrayListOf(LogModule())
-        )
-
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@MyApplication)

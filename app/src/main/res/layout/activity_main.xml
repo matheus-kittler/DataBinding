@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/border_black"
-                android:text="@{viewModel.addressResource.component2().logradouro}"
+                android:text="@{viewModel.address.logradouro}"
                 android:padding="5dp"
                 android:textSize="18sp"
                 android:textColor="@color/black"

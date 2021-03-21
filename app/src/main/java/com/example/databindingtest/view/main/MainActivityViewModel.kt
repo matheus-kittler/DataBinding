@@ -1,13 +1,12 @@
 package com.example.databindingtest.view.main
 
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.databindingtest.dispatcher.IAppDispatchers
 import com.example.databindingtest.model.Address
 import com.example.databindingtest.service.backend.IAddressService
 import com.example.databindingtest.util.Resource
+import com.example.databindingtest.util.Status
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -21,6 +20,18 @@ class MainActivityViewModel(
     val addressResource: MutableLiveData<Resource<Address>> = MutableLiveData<Resource<Address>>()
     val error: MutableLiveData<String> = MutableLiveData<String>()
     val loading: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+    val isLoading: LiveData<Boolean> = Transformations.map(addressResource) {
+        return@map it?.status == Status.LOADING
+
+    }// TODO mostra que o serviço está carregando
+
+    val isError: LiveData<String> = Transformations.map(addressResource) {
+        return@map it?.message
+    }// TODO mostra que o serviço deu erro
+
+    val address: LiveData<Address> = Transformations.map(addressResource) {
+        return@map it?.data
+    }// TODO retorna o endereço
 //    val isEnable: LiveData<Boolean> = Transformations.map(cep) {
 //        return@map it?.length == 8
 //    }
@@ -54,4 +65,8 @@ class MainActivityViewModel(
             }
         }
     }
+
+//    fun getAddres(): LiveData<Address> {
+//        return service.getAddress(cep.value ?: "")
+//    } TODO coroutines normal
 }

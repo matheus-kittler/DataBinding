@@ -1,16 +1,21 @@
 package com.example.databindingtest.service.backend
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.databindingtest.util.Resource
 import com.example.databindingtest.model.Address
 import com.example.databindingtest.network.Network
 import com.example.databindingtest.service.IAddressAPI
 import com.example.databindingtest.util.NetworkBoundResource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 
 class AddressService(
     private val service: IAddressAPI
-): IAddressService {
+) : IAddressService {
 
     override suspend fun getAddress(cep: String): Flow<Resource<Address>> {
         return flow {
@@ -34,5 +39,5 @@ class AddressService(
 //            }
 //        }
 //        return address
-//    }
+//    } TODO chamada coroutines normal
 }
