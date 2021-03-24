@@ -1,7 +1,7 @@
 package com.example.databindingtest.service.backend
 
 import com.example.databindingtest.model.Address
-import com.example.databindingtest.util.Resource
+import com.example.databindingtest.service.resource.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface IAddressService {

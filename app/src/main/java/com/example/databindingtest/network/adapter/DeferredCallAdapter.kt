@@ -1,6 +1,6 @@
 package com.example.databindingtest.network.adapter
 
-import com.example.databindingtest.util.ApiResponse
+import com.example.databindingtest.service.resource.ApiResponse
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Deferred
 import retrofit2.Call

@@ -1,4 +1,4 @@
-package com.example.databindingtest.util
+package com.example.databindingtest.service.resource
 
 data class Resource<out T> (val status: Status, val data: T?, val message: String?) {
     companion object {

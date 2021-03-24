@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DataBindingTest</string>
+    <string name="alert_message">Digite um CEP correto!</string>
+    <string name="unknown_error">Unknown error…</string>
 </resources>

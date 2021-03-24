@@ -2,10 +2,6 @@ package com.example.databindingtest
 
 import android.app.Application
 import com.example.databindingtest.di.appModule
-import com.example.databindingtest.network.module.RetrofitModule
-import mezzari.torres.lucas.network.source.Network
-import mezzari.torres.lucas.network.source.module.client.LogModule
-import mezzari.torres.lucas.network.source.module.retrofit.GsonConverterModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

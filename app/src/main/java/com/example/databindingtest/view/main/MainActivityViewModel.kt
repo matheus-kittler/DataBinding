@@ -5,8 +5,8 @@ import androidx.lifecycle.*
 import com.example.databindingtest.dispatcher.IAppDispatchers
 import com.example.databindingtest.model.Address
 import com.example.databindingtest.service.backend.IAddressService
-import com.example.databindingtest.util.Resource
-import com.example.databindingtest.util.Status
+import com.example.databindingtest.service.resource.Resource
+import com.example.databindingtest.service.resource.Status
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -16,44 +16,37 @@ class MainActivityViewModel(
     private val dispatchers: IAppDispatchers
 ) : ViewModel() {
 
+    private val addressResource: MutableLiveData<Resource<Address>> =
+        MutableLiveData<Resource<Address>>()
     val cep: MutableLiveData<String> = MutableLiveData<String>()
-    val addressResource: MutableLiveData<Resource<Address>> = MutableLiveData<Resource<Address>>()
-    val error: MutableLiveData<String> = MutableLiveData<String>()
-    val loading: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
-    val isLoading: LiveData<Boolean> = Transformations.map(addressResource) {
-        return@map it?.status == Status.LOADING
 
+    val serviceLoad: LiveData<Boolean> = Transformations.map(addressResource) {
+        return@map it?.status == Status.LOADING
     }// TODO mostra que o serviço está carregando
 
-    val isError: LiveData<String> = Transformations.map(addressResource) {
-        return@map it?.message
+    val error: LiveData<String> = Transformations.map(addressResource) {
+//        (if (it.message != null || it.status == Status.SUCCESS) {
+//            return@map it?.message
+//        } else if (it.message == null || it.status == Status.ERROR) {
+//            return@map it?.status.toString()
+//        } else {
+//
+//        }).toString()
+
+        if (it.message == null && it.status == Status.ERROR) {
+            return@map "Digite o CEP corretamente"
+        } else {
+            return@map it?.message
+        }
+
     }// TODO mostra que o serviço deu erro
 
     val address: LiveData<Address> = Transformations.map(addressResource) {
         return@map it?.data
     }// TODO retorna o endereço
+
 //    val isEnable: LiveData<Boolean> = Transformations.map(cep) {
 //        return@map it?.length == 8
-//    }
-
-//    fun loadAddress() {
-//        val cep: String = cep.value ?: return
-//        loading.value = true
-//        service.getAddress(cep).enqueue(object : Callback<Address> {
-//            override fun onResponse(call: Call<Address>, response: Response<Address>) {
-//                if (response.isSuccessful) {
-//                    address.value = response.body()
-//                } else {
-//                    error.value = "Error"
-//                }
-//                loading.value = false
-//            }
-//
-//            override fun onFailure(call: Call<Address>, t: Throwable) {
-//                error.value = t.message
-//                loading.value = false
-//            }
-//        })
 //    }
 
     fun getAddres() {
@@ -65,8 +58,4 @@ class MainActivityViewModel(
             }
         }
     }
-
-//    fun getAddres(): LiveData<Address> {
-//        return service.getAddress(cep.value ?: "")
-//    } TODO coroutines normal
 }

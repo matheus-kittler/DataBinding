@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:hint="Busca CEP!"
             android:text="@={viewModel.cep}"
+            android:inputType="number"
             android:textAlignment="center"
             android:textSize="21sp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -36,9 +37,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ProgressBar
+            android:id="@+id/pbLoading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.serviceLoad ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,8 +52,8 @@
             android:layout_height="wrap_content"
             android:background="@color/transparent"
             android:text="Buscar"
-            android:textAllCaps="false"
             android:onClick="@{(view) -> viewModel.getAddres()}"
+            android:textAllCaps="false"
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@+id/searchCepEdt"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,6 +72,16 @@
             android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="15dp"/>
+
+        <TextView
+            android:id="@+id/txtError"
+            tools:text="Erro!"
+            android:textColor="@color/red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/searchCepEdt"
+            app:layout_constraintStart_toEndOf="@id/searchCepButton"
+            app:layout_constraintEnd_toStartOf="@id/btnNext"/>
 
         <LinearLayout
             android:id="@+id/llAddress"
@@ -90,6 +102,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/border_black"
                 android:text="@{viewModel.address.logradouro}"
+                android:paddingStart="12dp"
                 android:padding="5dp"
                 android:textSize="18sp"
                 android:textColor="@color/black"
@@ -100,8 +113,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@{address.complemento}"
                 android:background="@drawable/border_black"
+                android:text="@{viewModel.address.complemento}"
+                android:paddingStart="12dp"
                 android:padding="5dp"
                 android:textSize="18sp"
                 android:textColor="@color/black"
@@ -113,8 +127,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@{address.bairro}"
                 android:background="@drawable/border_black"
+                android:text="@{viewModel.address.bairro}"
+                android:paddingStart="12dp"
                 android:padding="5dp"
                 android:textSize="18sp"
                 android:textColor="@color/black"
@@ -126,8 +141,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@{address.localidade}"
                 android:background="@drawable/border_black"
+                android:text="@{viewModel.address.localidade}"
+                android:paddingStart="12dp"
                 android:padding="5dp"
                 android:textSize="18sp"
                 android:textColor="@color/black"
@@ -139,8 +155,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@{address.uf}"
                 android:background="@drawable/border_black"
+                android:text="@{viewModel.address.uf}"
+                android:paddingStart="12dp"
                 android:padding="5dp"
                 android:textSize="18sp"
                 android:textColor="@color/black"

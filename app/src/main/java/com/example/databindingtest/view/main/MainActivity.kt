@@ -1,22 +1,23 @@
 package com.example.databindingtest.view.main
 
 import android.content.Intent
-import android.location.Address
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.databindingtest.R
 import com.example.databindingtest.databinding.ActivityMainBinding
+import com.example.databindingtest.service.resource.Status
+import com.example.databindingtest.util.showAlert
 import com.example.databindingtest.view.edit.EditAddressActivity
-import com.example.databindingtest.view.edit.EditAddressViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private val mainViewModel: MainActivityViewModel by viewModel()
-    var address: com.example.databindingtest.model.Address = com.example.databindingtest.model.Address("", "", "", "", "", "")
+    var address: com.example.databindingtest.model.Address =
+        com.example.databindingtest.model.Address("", "", "", "", "", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,10 +27,6 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         binding.viewModel = mainViewModel
-
-//        binding.searchCepButton.setOnClickListener {
-//            mainViewModel.getAddres().observe(this, Observer { binding.address = it })
-//        }
 
         binding.btnNext.setOnClickListener {
             val intent = Intent(this, EditAddressActivity::class.java)
@@ -42,12 +39,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        val addressObserver = Observer<Address> {
-//            binding.address = it
-//        }
-//
-//        mainViewModel.address.observe(this, addressObserver)
+        mainViewModel.error.observe(this, Observer {
+            binding.searchCepEdt.error = it
+        })
 
-        mainViewModel.isError.observe(this, Observer { binding.searchCepEdt.error = it })
+        mainViewModel.serviceLoad.observe(this, Observer {
+            binding.pbLoading.visibility = View.VISIBLE
+        })
     }
 }
