@@ -9,8 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.databindingtest.R
 import com.example.databindingtest.databinding.ActivityMainBinding
-import com.example.databindingtest.service.resource.Status
-import com.example.databindingtest.util.showAlert
 import com.example.databindingtest.view.edit.EditAddressActivity
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("address", address)
             startActivity(intent)
         }
+        //TODO teste
 
         mainViewModel.error.observe(this, Observer {
             binding.searchCepEdt.error = it
